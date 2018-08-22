@@ -31,4 +31,19 @@
                 apt: name={{item}} state=present update_cache=yes
                 with_items:
                 - zabbix-agent
+      - name: copy templates to dest
+          become: yes
+            become_method: sudo
+          copy:
+            src: ./zabbix_agentd.conf
+            dest: /etc/zabbix/zabbix_agentd.conf
+            owner: root
+            group: root
+            mode: 0744
+            force: yes
+            notify: restart zabbix-agent
+  handlers:
+  - name: restart zabbix-agent
+    service: name=zabbix-agent state=restarted
+
 
