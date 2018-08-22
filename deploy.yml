@@ -21,27 +21,27 @@
            dest: /tmp/zabbix-release_3.4-1+xenial_all.deb
            mode: 0755
       - name: install zabbix-release
-          become: yes
-          become_method: sudo
-          shell: >
-            dpkg -i /tmp/zabbix-release_3.4-1+xenial_all.deb
+        become: yes
+        become_method: sudo
+        shell: >
+              dpkg -i /tmp/zabbix-release_3.4-1+xenial_all.deb
       - name: install zabbix-agent
-                become: yes
-                become_method: sudo
-                apt: name={{item}} state=present update_cache=yes
-                with_items:
-                - zabbix-agent
+        become: yes
+        become_method: sudo
+        apt: name={{item}} state=present update_cache=yes
+        with_items:
+        - zabbix-agent
       - name: copy templates to dest
-          become: yes
-            become_method: sudo
-          copy:
-            src: ./zabbix_agentd.conf
-            dest: /etc/zabbix/zabbix_agentd.conf
-            owner: root
-            group: root
-            mode: 0744
-            force: yes
-            notify: restart zabbix-agent
+        become: yes
+        become_method: sudo
+        copy:
+          src: ./zabbix_agentd.conf
+          dest: /etc/zabbix/zabbix_agentd.conf
+          owner: root
+          group: root
+          mode: 0744
+          force: yes
+        notify: restart zabbix-agent
   handlers:
   - name: restart zabbix-agent
     service: name=zabbix-agent state=restarted
