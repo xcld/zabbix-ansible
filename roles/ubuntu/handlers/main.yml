@@ -1,0 +1,3 @@
+---
+- name: start zabbix-agent
+  service: name=zabbix-agent state=started
