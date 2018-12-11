@@ -1,0 +1,13 @@
+---
+# This playbook deploys the zabbix agent 4.0 in the site
+- name: apply common configuration to Amazon nodes
+  hosts: all
+  remote_user: crazysal
+  roles:
+    - Amazon
+  when: ansible_distribution == 'Amazon'
+- name: apply common configuration to Ubuntu nodes
+  hosts: all
+  remote_user: crazysal
+  roles:
+    - ubuntu
