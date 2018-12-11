@@ -5,9 +5,6 @@
   remote_user: crazysal
   roles:
     - Amazon
-  when:
-    - ansible_distribution == 'Amazon'
-    - ansible_distribution_major_version == "NA"
 - name: apply common configuration to Ubuntu nodes
   hosts: all
   remote_user: crazysal
