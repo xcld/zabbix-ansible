@@ -62,6 +62,6 @@
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: root
     group: root
-    mode: 0744
+    mode: 0644
     force: yes
   notify: start zabbix-agent
